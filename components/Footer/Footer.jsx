@@ -90,7 +90,7 @@ const Footer = () => {
               <div className={`fade-on-scroll ${isVisible ? 'visible' : ''}`}>
                 <Logo />
                 <Space h={'md'} />
-                <Text className="!text-sm sm:!text-base !text-[#555870]">{footerText}</Text>
+                <Text className="!text-sm sm:!text-base !text-text-secondary">{footerText}</Text>
               </div>
             </Grid.Col>
 

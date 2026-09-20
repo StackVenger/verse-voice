@@ -31,20 +31,23 @@ const RecentSingleBlog = memo(({ blog }) => {
       className="!gap-3"
       direction={{ base: 'column', sm: 'row' }}
     >
-      <div style={{
-        width: '100%',
-        maxWidth: '280px',
-        height: '180px',
-        position: 'relative',
-        borderRadius: 'var(--mantine-radius-md)',
-        overflow: 'hidden',
-        flexShrink: 0
-      }}>
+      {/* Full width while the card is stacked, capped once it becomes a row.
+          The breakpoint is Tailwind's `md` (768px) on purpose: that is where
+          Mantine's `sm` sits, which is what flips the Flex above to a row.
+          Using Tailwind's `sm` (640px) would re-cap the image while the card
+          was still stacked. */}
+      <div
+        className="relative w-full shrink-0 overflow-hidden md:max-w-[280px]"
+        style={{
+          height: '180px',
+          borderRadius: 'var(--mantine-radius-md)',
+        }}
+      >
         <OptimizedImage
           src={blogPicUrl}
           alt={title}
           fill
-          sizes="(max-width: 768px) 100vw, 280px"
+          sizes="(max-width: 767px) 100vw, 280px"
           style={{ objectFit: 'cover' }}
         />
       </div>

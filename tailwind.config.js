@@ -8,7 +8,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        base: 'var(--bg-base)',
+        // NOTE: do not add a colour called `base`, `xs`, `sm`, `lg` or `xl`.
+        // Tailwind builds `text-<colour>` utilities from these, which collide
+        // with the built-in font-size utilities of the same name and win — a
+        // colour named `base` turned every `text-base` into
+        // `color: var(--bg-base)`, painting the text the page background in
+        // both themes. `bg-base` was never used, so the entry only did harm.
         raised: 'var(--bg-raised)',
         surface: 'var(--bg-surface)',
         elevated: 'var(--bg-elevated)',

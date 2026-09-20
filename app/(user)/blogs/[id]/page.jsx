@@ -63,7 +63,7 @@ const BlogSingle = () => {
             alt="author-img"
           />
           <div>
-            <Text fw={600} className="!text-base !text-[#555870]">
+            <Text fw={600} className="!text-base">
               {blog.createdBy?.name}
             </Text>
             <Text fw={400} size="sm" c="dimmed">
