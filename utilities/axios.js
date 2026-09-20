@@ -1,10 +1,14 @@
 import axios from 'axios';
 import { toast } from 'sonner';
 
-const NEXT_PUBLIC_API_URL = 'https://backend-five-beta-ey61zod81u.vercel.app/api/v1';
-const NEXT_PUBLIC_TEST_API_URL = 'http://localhost:8000/api/v1';
-
-const BASE_URL = process.env.NODE_ENV === 'production' ? NEXT_PUBLIC_API_URL : NEXT_PUBLIC_TEST_API_URL;
+// Despite the names, these used to be hardcoded string literals — the env var
+// was never actually read. It is now.
+//
+// In production this is set to the relative path `/api/v1`, because nginx serves
+// the site and the API from one hostname. That means no cross-origin requests at
+// all, and moving to a different domain needs no rebuild. NEXT_PUBLIC_* is
+// inlined at build time, so it is passed as a Docker build arg.
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1';
 
 const publicAxios = axios.create({
   baseURL: BASE_URL,
